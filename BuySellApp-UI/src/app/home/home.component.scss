@@ -1,0 +1,10 @@
+$global_background_color: #607196;
+
+html,
+body {
+  height: 100%;
+}
+
+.home_bgcolor {
+  background-color: #{$global_background_color};
+}
