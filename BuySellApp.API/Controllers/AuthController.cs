@@ -39,6 +39,7 @@ namespace BuySellApp.API.Controllers {
         [HttpPost ("login")]
         [HttpOptions]
         public async Task<IActionResult> Login (LoginDTO userLoginDTO) {
+
             var checkUser = await _authRepo.Login (userLoginDTO.Username.ToLower (), userLoginDTO.Password);
 
             if (checkUser == null) {
