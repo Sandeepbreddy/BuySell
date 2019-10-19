@@ -1,19 +1,16 @@
 <nav class="navbar navbar-expand-md navbar-dark bg-dark">
   <div class="container-fluid">
-    <a class="navbar-brand" href="#">BuySell</a>
+    <a class="navbar-brand" [routerLink]="['/home']">BuySell</a>
 
     <ul class="navbar-nav mr-auto">
-      <li class="nav-item active">
-        <a class="nav-link" href="#">Browse</a>
+      <li class="nav-item" routerLinkActive="active">
+        <a class="nav-link" [routerLink]="['/home']">Browse</a>
       </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">Sell</a>
+      <li *ngIf="loggedIn()" class="nav-item" routerLinkActive="active">
+        <a class="nav-link" [routerLink]="['/sell']">Sell</a>
       </li>
-      <li class="nav-item">
-        <a class="nav-link disabled" href="#">Buy</a>
-      </li>
-      <li *ngIf="loggedIn()" class="nav-item">
-        <a class="nav-link disabled" href="#">Messages</a>
+      <li *ngIf="loggedIn()" class="nav-item" routerLinkActive="active">
+        <a class="nav-link" [routerLink]="['/chat']">Chat</a>
       </li>
     </ul>
 
