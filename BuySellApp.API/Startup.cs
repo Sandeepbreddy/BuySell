@@ -1,5 +1,6 @@
 ﻿using System.Net;
 using System.Text;
+using Amazon.S3;
 using BuySellApp.API.Data;
 using BuySellApp.API.Helpers;
 using BuySellApp.API.Interfaces;
@@ -28,6 +29,8 @@ namespace BuySellApp.API {
             services.AddMvc ().SetCompatibilityVersion (CompatibilityVersion.Version_2_2);
             services.AddCors ();
             services.AddScoped<IAuthRepository, AuthRepository> ();
+            services.AddScoped<IS3Service, ImageRepository> ();
+            services.AddAWSService<IAmazonS3> ();
             services.AddAuthentication (JwtBearerDefaults.AuthenticationScheme)
                 .AddJwtBearer (options => {
                     options.TokenValidationParameters = new TokenValidationParameters {
