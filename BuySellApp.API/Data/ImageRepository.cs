@@ -1,6 +1,8 @@
+using System;
 using System.Threading.Tasks;
 using Amazon.S3;
 using Amazon.S3.Model;
+using Amazon.S3.Transfer;
 using Amazon.S3.Util;
 using BuySellApp.API.Interfaces;
 using Microsoft.AspNetCore.Mvc;
@@ -29,6 +31,21 @@ namespace BuySellApp.API.Data {
                         Status = e.StatusCode
                 };
             }
+        }
+
+        public async Task UploadImagesAsync (string name) {
+            var fileTransferUtility = new TransferUtility (_amazonS3);
+            var imagesUploadRequest = new TransferUtilityUploadRequest {
+                BucketName = name,
+                FilePath = "C:\\Users\\sande\\Downloads\\car1.jpg",
+                Key = name + "/" + DateTime.Now.ToString ("mm-dd-yyyy"),
+                StorageClass = S3StorageClass.Standard,
+                PartSize = 6291456,
+                CannedACL = S3CannedACL.NoACL
+            };
+            imagesUploadRequest.Metadata.Add (name + "key", name);
+
+            await fileTransferUtility.UploadAsync (imagesUploadRequest);
         }
 
         public async Task<bool> BucketExists (string name) {

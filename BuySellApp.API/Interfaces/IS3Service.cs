@@ -5,6 +5,8 @@ namespace BuySellApp.API.Interfaces {
     public interface IS3Service {
         Task<S3Response> CreateBucketAsync (string name);
 
+        Task UploadImagesAsync (string name);
+
         Task<bool> BucketExists (string name);
     }
 }

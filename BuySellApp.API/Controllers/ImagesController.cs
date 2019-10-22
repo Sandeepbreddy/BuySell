@@ -21,5 +21,11 @@ namespace BuySellApp.API.Controllers {
             var response = await _s3Service.CreateBucketAsync (createBucketDTO.Name);
             return Ok (response);
         }
+
+        [HttpPost ("upload")]
+        public async Task<IActionResult> UploadImages (CreateBucketDTO createBucketDTO) {
+            await _s3Service.UploadImagesAsync (createBucketDTO.Name);
+            return Ok ();
+        }
     }
 }
