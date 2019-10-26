@@ -5,6 +5,26 @@ body {
   height: 100%;
 }
 
+ul {
+  padding: 0;
+  margin: 2px 2px 2px 2px;
+  width: auto;
+}
+
+li {
+  display: inline;
+}
+
+.imagesList {
+  margin: 2px;
+  border: 2px;
+  box-shadow: #555 1 1 1 1px;
+}
+
 .home_bgcolor {
   background-color: #{$global_background_color};
+}
+
+.items_bgcolor {
+  background-color: #555;
 }

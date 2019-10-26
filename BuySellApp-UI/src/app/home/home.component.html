@@ -3,8 +3,17 @@
     <div class="col-3 text-center home_bgcolor align-middle">
       <app-register></app-register>
     </div>
-    <div class="col text-center">
-      Browse and Content
+    <div class="col  bg-dark">
+      <div class="row">
+        <div *ngFor="let image of images" class="d-flex flex-column mt-1">
+          <img
+            src="{{ image }}"
+            class="rounded d-block ml-1 mb-1"
+            width="230px"
+            height="200px"
+          />
+        </div>
+      </div>
     </div>
   </div>
 </div>

@@ -1,4 +1,7 @@
+using System.Collections.Generic;
+using System.IO;
 using System.Threading.Tasks;
+using Amazon.S3.Model;
 using BuySellApp.API.DTOs;
 using BuySellApp.API.Interfaces;
 using Microsoft.AspNetCore.Mvc;
@@ -26,6 +29,12 @@ namespace BuySellApp.API.Controllers {
         public async Task<IActionResult> UploadImages (CreateBucketDTO createBucketDTO) {
             await _s3Service.UploadImagesAsync (createBucketDTO.Name);
             return Ok ();
+        }
+
+        [HttpGet ("loadimages")]
+        public async Task<IActionResult> GetImagesFromS3 (string Name) {
+            List<S3Object> response = await _s3Service.GetImagesAsync (Name);
+            return Ok (response);
         }
     }
 }

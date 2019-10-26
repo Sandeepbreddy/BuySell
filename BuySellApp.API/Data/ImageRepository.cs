@@ -1,4 +1,6 @@
 using System;
+using System.Collections.Generic;
+using System.IO;
 using System.Threading.Tasks;
 using Amazon.S3;
 using Amazon.S3.Model;
@@ -46,6 +48,26 @@ namespace BuySellApp.API.Data {
             imagesUploadRequest.Metadata.Add (name + "key", name);
 
             await fileTransferUtility.UploadAsync (imagesUploadRequest);
+        }
+
+        public async Task<List<S3Object>> GetImagesAsync (string name) {
+            var request = new ListObjectsRequest {
+                BucketName = name
+            };
+            do {
+                ListObjectsResponse response = await _amazonS3.ListObjectsAsync (request);
+
+                if (response.IsTruncated) {
+                    request.Marker = response.NextMarker;
+                } else {
+                    request = null;
+                }
+
+                var responseStream = response.S3Objects;
+
+                return responseStream;
+            } while (request != null);
+
         }
 
         public async Task<bool> BucketExists (string name) {
