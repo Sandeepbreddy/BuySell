@@ -28,3 +28,12 @@ li {
 .items_bgcolor {
   background-color: #555;
 }
+
+img {
+  width: 250px; /* You can set the dimensions to whatever you want */
+  height: 200px;
+  object-fit: cover;
+}
+.row > div {
+  padding: 0 5px;
+}
